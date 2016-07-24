@@ -17,11 +17,9 @@ Github托管地址：https://github.com/ShixiangWan/MRMD
 
 ```
          // arff训练集文件名称
-         String TrainfeaName = "TrainSeq_DD_473D_Features";
+         String TrainfeaName = "train.arff";
         // arff测试集文件名称
-         String TestfeaName = "TestSeq_DD_473D_Features";
-        // arff文件所在路径
-        String dir = "C:\\ShixiangWan\\workspace\\MRMD\\arff_data\\";
+         String TestfeaName = "test.arff";
 ```
 ##4. 特别提示
 ###4.1 程序处理的所有文件都放在dir路径下，处理的临时文件末尾有“_temp”字样，保存最佳分类结果的文件末尾有“_best”字样；
