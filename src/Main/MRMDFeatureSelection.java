@@ -9,22 +9,26 @@ public class MRMDFeatureSelection {
 	public static void main(String args[]) {
 		
 		// arff训练集文件名称
-		String TrainfeaName = "TrainSeq_DD_473D_Features";
+		//String TrainfeaName = "train.arff";
+		String TrainfeaName = args[0];
 		// arff测试集文件名称
-		String TestfeaName = "TestSeq_DD_473D_Features";
+		//String TestfeaName = "test.arff";
+		String TestfeaName = args[1];
 		// arff文件所在路径
-		String dir = "C:\\ShixiangWan\\workspace\\MRMD\\arff_data\\";
+		String dir = "";
 		
 		
 		int initNum = 10; // 特征选择初始值
+		initNum = Integer.parseInt(args[2]);
 		int gap = 2; //特征选择间隔
+		gap = Integer.parseInt(args[3]);
 		int disFunc = 1; //MRMD参数
 		int lableNum = 1; //MRMD参数
 		int bestFeaNum = 0;
 		double bestAccuracy = 0.0;
 
-		String TrainInputFile = dir + TrainfeaName + ".arff";
-		String TestInputFile = dir + TestfeaName + ".arff";
+		String TrainInputFile = TrainfeaName;
+		String TestInputFile = TestfeaName;
 		int TraininsNum = new CaculateNum().getInstanceNum(TrainInputFile); // 训练集样本数
 		int feaNum = new CaculateNum().getFeatureNum(TrainInputFile); // 样本总特征
 		
@@ -36,18 +40,13 @@ public class MRMDFeatureSelection {
 				int seleFeaNum = i;
 				
 				// 调用MRMD.jar运行降维
-				BufferedWriter bwTrain = new BufferedWriter(new FileWriter("aTrain.bat"));
 				String TrainOutputFile = dir + TrainfeaName + "_temp" + ".txt";
-				String cmdTrain = "java -jar MRMD.jar -i " + TrainInputFile
+				String command = "java -jar MRMD.jar -i " + TrainInputFile
 						+ " -o " + TrainOutputFile + " -in " + TraininsNum
 						+ " -fn " + feaNum + " -sn " + seleFeaNum + " -ln "
 						+ lableNum + " -df " + disFunc + " -a " + dir
 						+ TrainfeaName + "_temp" + ".arff";
-				bwTrain.write(cmdTrain);
-				bwTrain.newLine();
-				bwTrain.flush();
-				bwTrain.close();
-				Process processTrain = Runtime.getRuntime().exec("aTrain.bat");
+				Process processTrain = Runtime.getRuntime().exec(command);
 				processTrain.waitFor();
 
 				//需要进行训练与测试的文件
