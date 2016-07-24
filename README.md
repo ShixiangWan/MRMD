@@ -13,7 +13,7 @@ Github托管地址：https://github.com/ShixiangWan/MRMD
 ###3.1 （推荐）进入文件夹MRMD-Jar-single查看预编译版本，使用最简单。如果需要查看源代码，请下载全部工程。
 ###3.2 将附件解压缩后直接导入Eclipse或Myeclipse，右键项目Buildpath添加项目文件夹lib中的所有jar包，不应有任何报错；
 
-###3.3 修改主文件MRMDFeatureSelection.java中的下面三个字段并运行主程序：
+###3.3 修改主文件MRMDFeatureSelection.java中的下面两个字段并运行主程序：
 
 ```
          // arff训练集文件名称
